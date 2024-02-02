@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TurretData
   m_EditorClassIdentifier: 
   _timeOfDelay: 1.5
-  _rotationSpeed: 1000
+  _rotationSpeed: 5000
   _timeLeft: 0

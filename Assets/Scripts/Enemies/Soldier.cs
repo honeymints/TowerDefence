@@ -7,14 +7,15 @@ public class Soldier : MonoBehaviour, IWalkingEnemy
     [SerializeField] private SoldierFactory soldierData;
     private float _healthPoints;
     private float _hitForce;
-    private NavMeshAgent _agent;
+    private Animator _animator;
     private Transform target;
-    private IWalkingEnemy _walkingEnemyImplementation;
+    private NavMeshAgent _agent;
 
     private void Start()
     {
         _healthPoints = soldierData.healthPoint;
         _hitForce = soldierData.hitForce;
+        _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         target = GameObject.FindWithTag("Castle").transform;
     }
@@ -26,11 +27,13 @@ public class Soldier : MonoBehaviour, IWalkingEnemy
 
     public void Attack()
     {
-        throw new System.NotImplementedException();
+        _animator.Play("Shooting");
+        target.GetComponent<Tower>().GetDamage(_hitForce);
     }
 
     public void Die()
     {
+        _animator.Play("Dying");
         EnemyManager._walkingEnemies.Remove(this);
         Destroy(gameObject);
     }
@@ -56,5 +59,13 @@ public class Soldier : MonoBehaviour, IWalkingEnemy
     public void Initialize(WalkingEnemyFactory walkingEnemyFactory)
     {
         soldierData = (SoldierFactory)walkingEnemyFactory;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Castle"))
+        {
+            Attack();
+        }
     }
 }

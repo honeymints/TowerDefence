@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
-using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    private Transform _target;
+    [CanBeNull] private Transform _target;
     
     [SerializeField] private Transform _shell;
     [SerializeField] private Transform _turretPos;
@@ -13,7 +12,8 @@ public class Turret : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private TurretData _turretData;
     private int enemyCount;
-    private bool isTargetDead=false;
+    private bool isFlyingEnemyExist=false;
+    private bool isWalkingEnemyExist=false;
     private bool canShoot = false, isInArea = false;
     private float timeLeft=0, timeOfDelay; 
     
@@ -25,16 +25,32 @@ public class Turret : MonoBehaviour
 
     void Update()
     {
+        if (EnemyManager._walkingEnemies.Count != 0)
+        {
+            isWalkingEnemyExist=true;
+        }
+        else
+        {
+            isWalkingEnemyExist=false;
+        }
+        if (EnemyManager._flyingEnemies.Count != 0)
+        {
+            isFlyingEnemyExist=true;
+        }
+        else
+        {
+            isFlyingEnemyExist=false;
+        }
         DetectTarget();
-        Rotate();
-        Shoot();
         CanShoot();
+        Shoot();
+        Rotate();
     }
     
     private void DetectTarget()
     {
-        _target = EnemyManager._walkingEnemies[0].GetPoisition();
-        if(EnemyManager._walkingEnemies==null) _target = EnemyManager._flyingEnemies[0].GetPosition();
+        if(isWalkingEnemyExist) _target = EnemyManager._walkingEnemies[0].GetPoisition();
+        if (EnemyManager._walkingEnemies == null) _target = EnemyManager._flyingEnemies[0].GetPosition();
     }
     
     public void Shoot()
@@ -73,5 +89,4 @@ public class Turret : MonoBehaviour
             isInArea = true;
         }
     }
-    
 }

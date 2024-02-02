@@ -4,9 +4,12 @@ using UnityEngine.AI;
 public class Amy : MonoBehaviour, IFlyingEnemy
 {
     [SerializeField] private AmyFactory amyData;
+    private float _healthPoints;
+    private Animator _animator;
     private void Start()
     {
-        
+        _healthPoints = amyData.healthPoint;
+        _animator = GetComponent<Animator>();
     }
     
     public void ThrowBomb()
@@ -31,7 +34,15 @@ public class Amy : MonoBehaviour, IFlyingEnemy
 
     public void GetHurt(float damage)
     {
-        throw new System.NotImplementedException();
+        if (_healthPoints > 0)
+        {
+            _healthPoints -= damage;
+        }
+        else
+        {
+            _healthPoints = 0;
+            Die();
+        }
     }
 
     public Transform GetPosition()

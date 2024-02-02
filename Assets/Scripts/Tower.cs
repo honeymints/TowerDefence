@@ -18,12 +18,12 @@ public class Tower : MonoBehaviour
     
     private void Die()
     {
-        
+        Debug.Log("is dead");
     }
 
-    private void GetDamage(float hitForce)
-    {
-        if (currentHP > 0)
+     public void GetDamage(float hitForce)
+     { 
+         if (currentHP > 0)
         {
             currentHP -= hitForce;
         }
@@ -31,6 +31,8 @@ public class Tower : MonoBehaviour
         {
             currentHP = 0;
         }
+        
+        HPCounter();
     }
 
     private void HPCounter()

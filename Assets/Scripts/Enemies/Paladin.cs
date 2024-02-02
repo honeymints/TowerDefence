@@ -27,7 +27,8 @@ public class Paladin : MonoBehaviour, IWalkingEnemy
 
     public void Attack()
     {
-        throw new System.NotImplementedException();
+        _animator.Play("Sword Slash");
+        target.GetComponent<Tower>().GetDamage(_hitForce);
     }
 
     public void Die()
@@ -57,5 +58,13 @@ public class Paladin : MonoBehaviour, IWalkingEnemy
     public Transform GetPoisition()
     {
         return transform;
+    }
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Castle"))
+        {
+            Attack();
+        }
     }
 }
