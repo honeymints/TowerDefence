@@ -6,4 +6,6 @@ public interface IFlyingEnemy
     void Die();
 
     void Initialize(FlyingEnemyFactory flyingEnemyData);
+
+    void GetHurt(float damage);
 }

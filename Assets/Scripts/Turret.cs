@@ -31,7 +31,7 @@ public class Turret : MonoBehaviour
 
     private void DetectTarget()
     {
-        _target = EnemyManager._walkingEnemies[0].GetPoisition();
+        _target = EnemyManager._walkingEnemies[EnemyManager._walkingEnemies.Count-1].GetPoisition();
     }
     
     public void Shoot()

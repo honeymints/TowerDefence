@@ -28,4 +28,9 @@ public class Amy : MonoBehaviour, IFlyingEnemy
     {
         this.amyData = (AmyFactory)amyData;
     }
+
+    public void GetHurt(float damage)
+    {
+        throw new System.NotImplementedException();
+    }
 }

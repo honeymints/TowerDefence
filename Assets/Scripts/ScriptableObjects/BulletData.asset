@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74cb7c9972b5417faa4e93fecea72647, type: 3}
   m_Name: BulletData
   m_EditorClassIdentifier: 
-  _speedShooting: 100
+  speedShooting: 100
+  hitForce: 100

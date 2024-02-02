@@ -15,4 +15,4 @@ MonoBehaviour:
   enemyCount: 4
   spawnDelay: 3
   costPerUnit: 40
-  enemyType: 0
+  enemyType: 1

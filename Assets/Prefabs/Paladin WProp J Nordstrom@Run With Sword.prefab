@@ -91,10 +91,10 @@ PrefabInstance:
       addedObject: {fileID: 4168377103412114075}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2f26ae808c59ef8458808dea6c05f176, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2010086266159357843}
+      addedObject: {fileID: 5151454479295480343}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2f26ae808c59ef8458808dea6c05f176, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5151454479295480343}
+      addedObject: {fileID: 2751549311621449132}
   m_SourcePrefab: {fileID: 100100000, guid: 2f26ae808c59ef8458808dea6c05f176, type: 3}
 --- !u!1 &5742520138368556645 stripped
 GameObject:
@@ -171,19 +171,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2010086266159357843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5742520138368556645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb931d42d604d299b3ad5cdc6276620, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paladinData: {fileID: 11400000, guid: f7f697cad12b6d842a914566745a1fb2, type: 2}
 --- !u!136 &5151454479295480343
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -207,3 +194,16 @@ CapsuleCollider:
   m_Height: 2.3280451
   m_Direction: 1
   m_Center: {x: 0, y: 0.66402256, z: 0}
+--- !u!114 &2751549311621449132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742520138368556645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb931d42d604d299b3ad5cdc6276620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paladinData: {fileID: 0}

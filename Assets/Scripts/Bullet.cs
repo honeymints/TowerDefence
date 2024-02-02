@@ -6,12 +6,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private Color color;
-    private Transform target;
     [SerializeField] private BulletData _bulletData;
+    private Transform target;
     private Rigidbody rb;
-
-    private Collider coll;
+    
     // Start is called before the first frame update
 
     private void Update()
@@ -23,7 +21,6 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        coll = GetComponent<Collider>();
     }
     
     public void OnEnable()
@@ -33,33 +30,38 @@ public class Bullet : MonoBehaviour
 
     private IEnumerator Disable()
     {
-        //yield return new WaitForSeconds(3.5f);
         yield return new WaitForSeconds(3.5f);
         gameObject.SetActive(false);
     }
-    
-    private IEnumerator MoveTowardsPLayer()
-    {
-        while (transform.position != target.position)
-        {
-            Vector3 currentPosition = Vector3.MoveTowards(transform.position, target.position,
-                _bulletData._speedShooting*Time.deltaTime);
-            transform.position = currentPosition;
-            yield return null;
-        }
-    }
-    
+
     private void MoveTowardsPlayer()
     {
         Vector3 direction = (target.position - transform.position).normalized;
-        rb.AddForce(_bulletData._speedShooting*direction);
+        rb.AddForce(_bulletData.speedShooting*direction);
     }
 
+    private void HitPlayer(Collision collision)
+    {
+        
+    }
+    
     private void OnCollisionEnter(Collision collision)
     {
+        var walkingEnemy = collision.gameObject.GetComponent<IWalkingEnemy>();
+        var flyingEnemy = collision.gameObject.GetComponent<IFlyingEnemy>();
         if (collision.gameObject.CompareTag("Ground"))
         {
             this.enabled = false;
+        }
+
+        if (walkingEnemy!= null)
+        {
+            walkingEnemy.GetHurt(_bulletData.hitForce);
+        }
+
+        if (flyingEnemy!= null)
+        {
+            flyingEnemy.GetHurt(_bulletData.hitForce);
         }
     }
 }
