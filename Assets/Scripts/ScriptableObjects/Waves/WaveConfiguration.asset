@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e2385abd3ed44c3ba6a495d92cda493, type: 3}
   m_Name: WaveConfiguration
   m_EditorClassIdentifier: 
-  enemyCount: 4
+  enemyCount: 2
   spawnDelay: 3
   costPerUnit: 40
-  enemyType: 1
+  enemyType: 0

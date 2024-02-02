@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
@@ -10,10 +12,11 @@ public class Turret : MonoBehaviour
 
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private TurretData _turretData;
-    
+    private bool isTargetDead=false;
+    private int deadTargetCount = 0;
     private bool canShoot = false, isInArea = false;
     private float timeLeft=0, timeOfDelay; 
-
+    
     private void Awake()
     {
         timeLeft = _turretData._timeLeft;
@@ -23,15 +26,22 @@ public class Turret : MonoBehaviour
     void Update()
     {
         DetectTarget();
-        //_target = GameObject.FindGameObjectWithTag("Enemy").transform;
         Rotate();
         Shoot();
         CanShoot();
     }
 
+    private void Start()
+    {
+        
+    }
+
     private void DetectTarget()
     {
-        _target = EnemyManager._walkingEnemies[EnemyManager._walkingEnemies.Count-1].GetPoisition();
+        if (!isTargetDead)
+        {
+            _target = EnemyManager._walkingEnemies[EnemyManager._walkingEnemies.Count - 1].GetPoisition();
+        }
     }
     
     public void Shoot()
@@ -64,12 +74,10 @@ public class Turret : MonoBehaviour
         _turretPos.rotation = Quaternion.Slerp(_turretPos.rotation, rotation, _turretData._rotationSpeed * Time.deltaTime);
     }
     
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("WOOORK");
             isInArea = true;
         }
     }

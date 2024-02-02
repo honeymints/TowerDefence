@@ -12,6 +12,8 @@ public class Paladin : MonoBehaviour, IWalkingEnemy
     
     private void Start()
     {
+        _healthPoints = paladinData.healthPoint;
+        _hitForce = paladinData.hitForce;
         _agent = GetComponent<NavMeshAgent>();
         target = GameObject.FindWithTag("Castle").transform;
     }
@@ -28,12 +30,8 @@ public class Paladin : MonoBehaviour, IWalkingEnemy
 
     public void Die()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public void DetectTurret()
-    {
-        throw new NotImplementedException();
+        EnemyManager._walkingEnemies.Remove(this);
+        Destroy(gameObject);
     }
 
     public void Initialize(WalkingEnemyFactory walkingEnemyData)

@@ -9,18 +9,15 @@ public class Bullet : MonoBehaviour
     [SerializeField] private BulletData _bulletData;
     private Transform target;
     private Rigidbody rb;
-    
-    // Start is called before the first frame update
-
-    private void Update()
-    {
-        target = GameObject.FindWithTag("Enemy").transform;
-        MoveTowardsPlayer();
-    }
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+    }
+    private void Update()
+    {
+        target = GameObject.FindWithTag("Enemy").transform;
+        MoveTowardsPlayer();
     }
     
     public void OnEnable()
@@ -40,15 +37,11 @@ public class Bullet : MonoBehaviour
         rb.AddForce(_bulletData.speedShooting*direction);
     }
 
-    private void HitPlayer(Collision collision)
-    {
-        
-    }
-    
     private void OnCollisionEnter(Collision collision)
     {
         var walkingEnemy = collision.gameObject.GetComponent<IWalkingEnemy>();
         var flyingEnemy = collision.gameObject.GetComponent<IFlyingEnemy>();
+        
         if (collision.gameObject.CompareTag("Ground"))
         {
             this.enabled = false;

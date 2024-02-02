@@ -31,14 +31,10 @@ public class Soldier : MonoBehaviour, IWalkingEnemy
 
     public void Die()
     {
+        EnemyManager._walkingEnemies.Remove(this);
         Destroy(gameObject);
     }
 
-    public void DetectTurret()
-    {
-        throw new System.NotImplementedException();
-    }
-    
     public void GetHurt(float damage)
     {
         if (_healthPoints > 0)

@@ -13,33 +13,47 @@ public class EnemyManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(CreateWave());
-        //enemyFactory.CreateFlyingEnemy(EnemyType.Amy);
     }
 
     public IEnumerator CreateWave()
     {
         foreach (WaveConfiguration wave in waves)
         {
-            for(int i=0; i<wave.enemyCount;i++)
-            {
-                IFlyingEnemy flyingEnemy = enemyFactory.CreateFlyingEnemy(wave.enemyType);
-                IWalkingEnemy walkingEnemy = enemyFactory.CreateWalkingEnemy(wave.enemyType);
-                
-                if (flyingEnemy != null)
-                {
-                    _flyingEnemies.Add(flyingEnemy);
-                }
+            yield return StartCoroutine(CreateEnemies(wave));
 
-                if (walkingEnemy != null)
-                {
-                    _walkingEnemies.Add(walkingEnemy);
-                }
+            yield return new WaitUntil(CheckIfEnemiesDead);
+        }
+    }
+
+    public IEnumerator CreateEnemies(WaveConfiguration wave)
+    {
+        for(int i=0; i<wave.enemyCount;i++)
+        {
+            IFlyingEnemy flyingEnemy = enemyFactory.CreateFlyingEnemy(wave.enemyType);
+            IWalkingEnemy walkingEnemy = enemyFactory.CreateWalkingEnemy(wave.enemyType);
                 
-                yield return new WaitForSeconds(wave.spawnDelay);
+            if (flyingEnemy != null)
+            {
+                _flyingEnemies.Add(flyingEnemy);
             }
 
-            yield return new WaitForSeconds(30f);
+            if (walkingEnemy != null)
+            {
+                _walkingEnemies.Add(walkingEnemy);
+            }
+                
+            yield return new WaitForSeconds(wave.spawnDelay);
         }
+    }
+
+    public bool CheckIfEnemiesDead()
+    {
+        if (_walkingEnemies.Count <= 0)
+        {
+            return true;
+        }
+
+        return false;
     }
     
 }
