@@ -16,7 +16,9 @@ public class Bullet : MonoBehaviour
     }
     private void Update()
     {
-        target = GameObject.FindWithTag("Enemy").transform;
+        target = EnemyManager._walkingEnemies[0].GetPoisition();
+        if (target == null) target = EnemyManager._flyingEnemies[0].GetPosition();
+        
         MoveTowardsPlayer();
     }
     

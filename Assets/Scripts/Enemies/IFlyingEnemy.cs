@@ -1,4 +1,6 @@
 ﻿
+using UnityEngine;
+
 public interface IFlyingEnemy
 {
     void ThrowBomb();
@@ -8,4 +10,6 @@ public interface IFlyingEnemy
     void Initialize(FlyingEnemyFactory flyingEnemyData);
 
     void GetHurt(float damage);
+
+    Transform GetPosition();
 }

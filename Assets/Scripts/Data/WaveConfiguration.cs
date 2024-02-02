@@ -5,7 +5,6 @@ public class WaveConfiguration : ScriptableObject
 {
     public int enemyCount;
     public float spawnDelay;
-    public int costPerUnit;
     public EnemyType enemyType;
 }
 

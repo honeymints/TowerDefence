@@ -12,8 +12,8 @@ public class Turret : MonoBehaviour
 
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private TurretData _turretData;
+    private int enemyCount;
     private bool isTargetDead=false;
-    private int deadTargetCount = 0;
     private bool canShoot = false, isInArea = false;
     private float timeLeft=0, timeOfDelay; 
     
@@ -30,18 +30,11 @@ public class Turret : MonoBehaviour
         Shoot();
         CanShoot();
     }
-
-    private void Start()
-    {
-        
-    }
-
+    
     private void DetectTarget()
     {
-        if (!isTargetDead)
-        {
-            _target = EnemyManager._walkingEnemies[EnemyManager._walkingEnemies.Count - 1].GetPoisition();
-        }
+        _target = EnemyManager._walkingEnemies[0].GetPoisition();
+        if(EnemyManager._walkingEnemies==null) _target = EnemyManager._flyingEnemies[0].GetPosition();
     }
     
     public void Shoot()
@@ -49,7 +42,6 @@ public class Turret : MonoBehaviour
         if (canShoot && isInArea)
         {
             var bullet = Instantiate(_bulletPrefab, _shell.position, transform.rotation);
-            canShoot = false;
             timeLeft = timeOfDelay;
         }
     }
@@ -81,12 +73,5 @@ public class Turret : MonoBehaviour
             isInArea = true;
         }
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            isInArea = false;
-        }
-    }
+    
 }

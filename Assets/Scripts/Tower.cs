@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class Tower : MonoBehaviour
 {
     [SerializeField] private Image currentHealthImage;
-    private EnemyFactory _enemy;
-    private float fullHP=1000f, currentHP;
     [SerializeField] private float speedOfFlinig;
+    
+    private float fullHP=1000f, currentHP;
     
     void Start()
     {

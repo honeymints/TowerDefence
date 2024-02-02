@@ -33,4 +33,9 @@ public class Amy : MonoBehaviour, IFlyingEnemy
     {
         throw new System.NotImplementedException();
     }
+
+    public Transform GetPosition()
+    {
+        return transform;
+    }
 }

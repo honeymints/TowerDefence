@@ -7,6 +7,7 @@ public class Paladin : MonoBehaviour, IWalkingEnemy
     [SerializeField] private PaladinFactory paladinData;
     private float _healthPoints;
     private float _hitForce;
+    private Animator _animator;
     private Transform target;
     private NavMeshAgent _agent;
     
@@ -14,6 +15,7 @@ public class Paladin : MonoBehaviour, IWalkingEnemy
     {
         _healthPoints = paladinData.healthPoint;
         _hitForce = paladinData.hitForce;
+        _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         target = GameObject.FindWithTag("Castle").transform;
     }
