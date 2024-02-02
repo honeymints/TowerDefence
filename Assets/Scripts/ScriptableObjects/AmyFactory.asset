@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a7ccee6e39417d902b3652cdb5b993, type: 3}
+  m_Name: AmyFactory
+  m_EditorClassIdentifier: 
+  hitForce: 250
+  healthPoint: 1500
+  prefab: {fileID: 3441883764535312931, guid: 79157b11892db34468e82d8fa16eda70, type: 3}
