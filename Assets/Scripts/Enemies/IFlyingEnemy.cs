@@ -12,4 +12,6 @@ public interface IFlyingEnemy
     void GetHurt(float damage);
 
     Transform GetPosition();
+
+    void FlyTowards();
 }
