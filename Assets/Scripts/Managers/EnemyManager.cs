@@ -9,10 +9,9 @@ public class EnemyManager : MonoBehaviour
     
     public static List<IWalkingEnemy> _walkingEnemies = new List<IWalkingEnemy>();
     public static List<IFlyingEnemy> _flyingEnemies = new List<IFlyingEnemy>();
-    
+
     public static EnemyType enemyType;
-    public static bool areEnemiesDead = false;
-    
+
     private void Start()
     {
         StartCoroutine(CreateWave());

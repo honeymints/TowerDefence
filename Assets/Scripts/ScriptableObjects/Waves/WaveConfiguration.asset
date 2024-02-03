@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCount: 2
   spawnDelay: 3
-  costPerUnit: 40
-  enemyType: 0
+  enemyType: 2

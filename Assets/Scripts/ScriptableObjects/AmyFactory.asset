@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitForce: 250
   healthPoint: 1500
+  speedOfFlying: 5
   prefab: {fileID: 3441883764535312931, guid: 79157b11892db34468e82d8fa16eda70, type: 3}
