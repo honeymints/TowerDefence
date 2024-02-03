@@ -19,12 +19,7 @@ public class Amy : MonoBehaviour, IFlyingEnemy
 
     public void Die()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public void Initialize()
-    {
-        throw new System.NotImplementedException();
+       Destroy(gameObject);
     }
 
     public void Initialize(FlyingEnemyFactory amyData)

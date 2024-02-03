@@ -11,8 +11,7 @@ public class EnemyManager : MonoBehaviour
     public static List<IWalkingEnemy> _walkingEnemies = new List<IWalkingEnemy>();
     public static List<IFlyingEnemy> _flyingEnemies = new List<IFlyingEnemy>();
     public static int currentEnemyCount;
-    public static int enemiesToSpawnLeft; 
-    public static int deadEnemyCount=0;
+    public static EnemyType enemyType;
     private void Start()
     {
         
@@ -28,8 +27,6 @@ public class EnemyManager : MonoBehaviour
     {
         foreach (WaveConfiguration wave in waves)
         {
-            enemiesToSpawnLeft = wave.enemyCount;
-            
             yield return StartCoroutine(CreateEnemies(wave));
             
             yield return new WaitUntil(CheckIfEnemiesDead);
@@ -42,8 +39,7 @@ public class EnemyManager : MonoBehaviour
         {
             IFlyingEnemy flyingEnemy = enemyFactory.CreateFlyingEnemy(wave.enemyType);
             IWalkingEnemy walkingEnemy = enemyFactory.CreateWalkingEnemy(wave.enemyType);
-            enemiesToSpawnLeft--;
-            
+
             if (flyingEnemy != null) _flyingEnemies.Add(flyingEnemy);
 
             if (walkingEnemy != null) _walkingEnemies.Add(walkingEnemy);
@@ -51,12 +47,8 @@ public class EnemyManager : MonoBehaviour
             currentEnemyCount = _walkingEnemies.Count;
             if (_walkingEnemies==null) currentEnemyCount = _flyingEnemies.Count;
 
-            if (enemiesToSpawnLeft+currentEnemyCount<wave.enemyCount)
-            {
-                deadEnemyCount++;
-                Debug.Log(deadEnemyCount);
-            }
-                
+            enemyType = wave.enemyType;
+
             yield return new WaitForSeconds(wave.spawnDelay);
         }
     }

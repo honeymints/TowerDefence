@@ -16,10 +16,23 @@ public class Bullet : MonoBehaviour
     }
     private void Update()
     {
-        target = EnemyManager._walkingEnemies[0].GetPoisition();
-        if (target == null) target = EnemyManager._flyingEnemies[0].GetPosition();
-        
-        MoveTowardsPlayer();
+        if (EnemyManager._walkingEnemies.Count == 0 && EnemyManager._flyingEnemies.Count == 0)
+        {
+            Debug.Log("no enemies");
+        }
+        else
+        {
+            if (EnemyManager.enemyType == EnemyType.Amy)
+            {
+                target = EnemyManager._flyingEnemies[0].GetPosition();
+            }
+            else if (EnemyManager.enemyType == EnemyType.Paladin || EnemyManager.enemyType == EnemyType.Soldier)
+            {
+                target = EnemyManager._walkingEnemies[0].GetPoisition();
+            }
+
+            MoveTowardsPlayer();
+        }
     }
     
     public void OnEnable()

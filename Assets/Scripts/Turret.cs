@@ -1,10 +1,9 @@
 using System;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    [CanBeNull] private Transform _target;
+    private Transform _target;
     
     [SerializeField] private Transform _shell;
     [SerializeField] private Transform _turretPos;
@@ -25,32 +24,46 @@ public class Turret : MonoBehaviour
 
     void Update()
     {
-        if (EnemyManager._walkingEnemies.Count != 0)
+        /*if (EnemyManager._walkingEnemies.Count==0 && EnemyManager._flyingEnemies.Count==0)
         {
-            isWalkingEnemyExist=true;
+            Debug.Log("a");
         }
         else
         {
-            isWalkingEnemyExist=false;
-        }
-        if (EnemyManager._flyingEnemies.Count != 0)
+            
+        }*/
+        if (EnemyManager._walkingEnemies.Count==0 && EnemyManager._flyingEnemies.Count==0)
         {
-            isFlyingEnemyExist=true;
+            Debug.Log("no enemies");
         }
         else
         {
-            isFlyingEnemyExist=false;
+            if (EnemyManager.enemyType == EnemyType.Amy)
+            {
+                _target = EnemyManager._flyingEnemies[0].GetPosition();
+            }
+            else if (EnemyManager.enemyType == EnemyType.Paladin || EnemyManager.enemyType == EnemyType.Soldier)
+            {
+                _target = EnemyManager._walkingEnemies[0].GetPoisition();
+            }
+            
+            DetectTarget();
+            CanShoot();
+            Shoot();
+            Rotate();
         }
-        DetectTarget();
-        CanShoot();
-        Shoot();
-        Rotate();
     }
     
     private void DetectTarget()
     {
-        if(isWalkingEnemyExist) _target = EnemyManager._walkingEnemies[0].GetPoisition();
-        if (EnemyManager._walkingEnemies == null) _target = EnemyManager._flyingEnemies[0].GetPosition();
+        if (EnemyManager._walkingEnemies.Count > 0)
+        {
+            _target = EnemyManager._walkingEnemies[0].GetPoisition();
+        }
+        else if (EnemyManager._flyingEnemies.Count > 0 || EnemyManager.enemyType==EnemyType.Amy)
+        {
+            _target = EnemyManager._flyingEnemies[0].GetPosition();
+        }
     }
     
     public void Shoot()
