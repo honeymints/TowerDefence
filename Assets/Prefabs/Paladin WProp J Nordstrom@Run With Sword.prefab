@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paladinData: {fileID: 0}
+  slider: {fileID: 6306460497679542834}
 --- !u!1001 &4863951886100123535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -372,6 +373,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec5c2779cfd609b43ab13451684f7aff, type: 3}
+--- !u!1 &6306460497679542834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1442618700366489021, guid: ec5c2779cfd609b43ab13451684f7aff, type: 3}
+  m_PrefabInstance: {fileID: 4863951886100123535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8520360826802811100 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3872635530167123795, guid: ec5c2779cfd609b43ab13451684f7aff, type: 3}

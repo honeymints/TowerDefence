@@ -11,4 +11,6 @@ public interface IWalkingEnemy
     void GetHurt(float damage);
     
     Transform GetPoisition();
+
+    void MoveTowards();
 }

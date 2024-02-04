@@ -1,12 +1,15 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Amy : MonoBehaviour, IFlyingEnemy
 {
     [SerializeField] private AmyFactory amyData;
+    [SerializeField] private GameObject slider;
     private float _healthPoints;
     private Transform _target;
+    private float nextAttack=-1;
     private float _speedOfFlying;
     private Animator _animator;
     private void Start()
@@ -43,6 +46,7 @@ public class Amy : MonoBehaviour, IFlyingEnemy
         if (_healthPoints > 0)
         {
             _healthPoints -= damage;
+            slider.GetComponent<HealthBarManager>().TakeDamage(_healthPoints);
         }
         else
         {

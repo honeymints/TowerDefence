@@ -1,10 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Paladin : MonoBehaviour, IWalkingEnemy
 {
     [SerializeField] private PaladinFactory paladinData;
+    [SerializeField] private GameObject slider;
     private float _healthPoints;
     private float _hitForce;
     private float _hitDelay;
@@ -26,7 +27,7 @@ public class Paladin : MonoBehaviour, IWalkingEnemy
 
     private void Update()
     {
-        _agent.destination = target.position;
+        MoveTowards();
     }
 
     public void Attack()
@@ -56,6 +57,7 @@ public class Paladin : MonoBehaviour, IWalkingEnemy
         if (_healthPoints > 0)
         {
             _healthPoints -= damage;
+            slider.GetComponent<HealthBarManager>().TakeDamage(_healthPoints);
         }
         else
         {
@@ -68,12 +70,26 @@ public class Paladin : MonoBehaviour, IWalkingEnemy
     {
         return transform;
     }
+
+    public void MoveTowards()
+    {
+        _agent.isStopped = false;
+        _agent.destination = target.position;
+    }
     
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Castle"))
         {
             Attack();
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Castle"))
+        {
+            MoveTowards();
         }
     }
 }
