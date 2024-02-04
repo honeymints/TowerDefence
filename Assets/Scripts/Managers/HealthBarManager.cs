@@ -8,32 +8,25 @@ public class HealthBarManager : MonoBehaviour
     [SerializeField] private Slider easeSlider;
     [SerializeField] private float _maxHealth;
     private float _currentHealth;
-    private float _easeSpeed=0.05f;
-
-    private Camera cam;
+    private float _easeSpeed=0.5f;
+    
     private void Start()
     {
-        cam=Camera.main;
         _currentHealth = _maxHealth;
     }
-    
-    private void LateUpdate()
-    {
-        transform.LookAt(transform.position+cam.transform.position);
-    }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float currentHealth)
     {
-        _currentHealth -= damage;
+        _currentHealth = currentHealth;
         ChangeSliderValue();
     }
 
     private void ChangeSliderValue()
     {
-        if (slider.value != _currentHealth)
+        /*if (slider.value != _currentHealth)
         {
             slider.value = _currentHealth;
-        }
+        }*/
 
         if (slider.value!=easeSlider.value)
         {

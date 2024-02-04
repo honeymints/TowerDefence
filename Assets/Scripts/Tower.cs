@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Tower : MonoBehaviour
 {
+    [SerializeField] private GameObject slider;
     private float fullHP = 1000f;
     private float currentHP;
     
@@ -23,7 +21,8 @@ public class Tower : MonoBehaviour
     {
         if (currentHP > 0)
         {
-            gameObject.GetComponent<HealthBarManager>().TakeDamage(hitForce);
+            currentHP -= hitForce;
+            slider.GetComponent<HealthBarManager>().TakeDamage(currentHP);
         }
         else
         {
