@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitForce: 100
   healthPoint: 1000
+  hitDelay: 2.5
   prefab: {fileID: 5742520138368556645, guid: 9c5dbf22e0ff05547bcf326700ac980c, type: 3}

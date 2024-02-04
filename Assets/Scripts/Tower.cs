@@ -6,10 +6,8 @@ using UnityEngine.UI;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] private Image currentHealthImage;
-    [SerializeField] private float speedOfFlinig;
-    
-    private float fullHP=1000f, currentHP;
+    private float fullHP = 1000f;
+    private float currentHP;
     
     void Start()
     {
@@ -21,23 +19,16 @@ public class Tower : MonoBehaviour
         Debug.Log("is dead");
     }
 
-     public void GetDamage(float hitForce)
-     { 
-         if (currentHP > 0)
+    public void GetDamage(float hitForce)
+    {
+        if (currentHP > 0)
         {
-            currentHP -= hitForce;
+            gameObject.GetComponent<HealthBarManager>().TakeDamage(hitForce);
         }
         else
         {
             currentHP = 0;
+            Die();
         }
-        
-        HPCounter();
-    }
-
-    private void HPCounter()
-    {
-        currentHealthImage.fillAmount =
-            Mathf.Lerp(currentHealthImage.fillAmount, currentHP / fullHP,Time.deltaTime*speedOfFlinig);
     }
 }

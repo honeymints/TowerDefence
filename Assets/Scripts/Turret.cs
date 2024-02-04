@@ -11,8 +11,6 @@ public class Turret : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private TurretData _turretData;
     private int enemyCount;
-    private bool isFlyingEnemyExist=false;
-    private bool isWalkingEnemyExist=false;
     private bool canShoot = false, isInArea = false;
     private float timeLeft=0, timeOfDelay; 
     
@@ -24,14 +22,6 @@ public class Turret : MonoBehaviour
 
     void Update()
     {
-        /*if (EnemyManager._walkingEnemies.Count==0 && EnemyManager._flyingEnemies.Count==0)
-        {
-            Debug.Log("a");
-        }
-        else
-        {
-            
-        }*/
         if (EnemyManager._walkingEnemies.Count==0 && EnemyManager._flyingEnemies.Count==0)
         {
             Debug.Log("no enemies");
