@@ -14,7 +14,7 @@ public class Tower : MonoBehaviour
     
     private void Die()
     {
-        Debug.Log("is dead");
+        Debug.Log("you lost");
     }
 
     public void GetDamage(float hitForce)

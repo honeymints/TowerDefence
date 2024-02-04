@@ -8,15 +8,17 @@ public class Amy : MonoBehaviour, IFlyingEnemy
     [SerializeField] private AmyFactory amyData;
     [SerializeField] private GameObject slider;
     private float _healthPoints;
-    private Transform _target;
-    private float nextAttack=-1;
+    private float _nextAttack=-1;
     private float _speedOfFlying;
-    private Animator _animator;
+    private float _throwDelay;
+    private float _bombForce;
+    private Transform _target;
     private void Start()
     {
         _healthPoints = amyData.healthPoint;
         _speedOfFlying = amyData.speedOfFlying;
-        _animator = GetComponent<Animator>();
+        _throwDelay = amyData.throwDelay;
+        _bombForce = amyData.bombForce;
         _target = GameObject.FindWithTag("Castle").transform;
     }
 
@@ -27,7 +29,11 @@ public class Amy : MonoBehaviour, IFlyingEnemy
 
     public void ThrowBomb()
     {
-        
+        if (Time.time > _nextAttack)
+        {
+            var bomb = Instantiate(amyData.bombPrefab);
+            _nextAttack = _throwDelay + Time.time;
+        }
     }
 
     public void Die()

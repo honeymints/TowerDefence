@@ -24,7 +24,7 @@ public class Turret : MonoBehaviour
     {
         if (EnemyManager._walkingEnemies.Count==0 && EnemyManager._flyingEnemies.Count==0)
         {
-            Debug.Log("no enemies");
+            Debug.Log("you won!");
         }
         else
         {

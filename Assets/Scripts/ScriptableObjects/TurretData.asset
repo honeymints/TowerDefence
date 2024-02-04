@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 878752799a63ebe448be7e6a87e7f199, type: 3}
   m_Name: TurretData
   m_EditorClassIdentifier: 
-  _timeOfDelay: 1.5
+  _timeOfDelay: 3
   _rotationSpeed: 5000
   _timeLeft: 0
