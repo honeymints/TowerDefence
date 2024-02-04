@@ -7,14 +7,18 @@ public class Paladin : MonoBehaviour, IWalkingEnemy
     [SerializeField] private PaladinFactory paladinData;
     private float _healthPoints;
     private float _hitForce;
+    private float _hitDelay;
+    private float nextAttack=-1;
     private Animator _animator;
     private Transform target;
     private NavMeshAgent _agent;
     
+
     private void Start()
     {
         _healthPoints = paladinData.healthPoint;
         _hitForce = paladinData.hitForce;
+        _hitDelay = paladinData.hitDelay;
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         target = GameObject.FindWithTag("Castle").transform;
@@ -27,10 +31,15 @@ public class Paladin : MonoBehaviour, IWalkingEnemy
 
     public void Attack()
     {
-        _animator.Play("Sword Slash");
-        target.GetComponent<Tower>().GetDamage(_hitForce);
+        if (Time.time>nextAttack)
+        {
+            _agent.isStopped = true;
+            _animator.Play("Sword Slash");
+            target.GetComponent<Tower>().GetDamage(_hitForce);
+            nextAttack = _hitDelay + Time.time;
+        }
     }
-
+    
     public void Die()
     {
         EnemyManager._walkingEnemies.Remove(this);
@@ -60,7 +69,7 @@ public class Paladin : MonoBehaviour, IWalkingEnemy
         return transform;
     }
     
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Castle"))
         {
