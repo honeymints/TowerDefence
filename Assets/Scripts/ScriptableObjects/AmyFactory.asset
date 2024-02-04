@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a7ccee6e39417d902b3652cdb5b993, type: 3}
   m_Name: AmyFactory
   m_EditorClassIdentifier: 
-  hitForce: 250
   healthPoint: 1500
-  speedOfFlying: 5
+  speedOfFlying: 4
+  bombForce: 150
+  throwDelay: 2
   prefab: {fileID: 3441883764535312931, guid: 79157b11892db34468e82d8fa16eda70, type: 3}
+  bombPrefab: {fileID: 3055327978028073354, guid: fe848f43af57ec8489516be43b49f467, type: 3}

@@ -6,7 +6,7 @@ public class Tower : MonoBehaviour
     [SerializeField] private GameObject slider;
     private float fullHP = 1000f;
     private float currentHP;
-    
+
     void Start()
     {
         currentHP = fullHP;

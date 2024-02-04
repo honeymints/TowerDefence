@@ -5,8 +5,6 @@ public class TurretData : ScriptableObject
 {
     public float _timeOfDelay;
     public float _rotationSpeed;
-    public float _timeLeft=0;
-    
 }
 
 

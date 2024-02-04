@@ -9,6 +9,7 @@ public class Soldier : MonoBehaviour, IWalkingEnemy
     [SerializeField] private GameObject slider;
     private float _healthPoints;
     private float _hitForce;
+    private float _hitDelay;
     private float nextAttack=-1;
     private Animator _animator;
     private Transform target;
@@ -18,6 +19,7 @@ public class Soldier : MonoBehaviour, IWalkingEnemy
     {
         _healthPoints = soldierData.healthPoint;
         _hitForce = soldierData.hitForce;
+        _hitDelay = soldierData.hitDelay;
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         target = GameObject.FindWithTag("Castle").transform;
@@ -30,8 +32,13 @@ public class Soldier : MonoBehaviour, IWalkingEnemy
 
     public void Attack()
     {
-        _animator.Play("Shooting");
-        target.GetComponent<Tower>().GetDamage(_hitForce);
+        if (Time.time>nextAttack)
+        {
+            _agent.isStopped = true;
+            _animator.Play("Shooting");
+            target.GetComponent<Tower>().GetDamage(_hitForce);
+            nextAttack = _hitDelay + Time.time;
+        }
     }
 
     public void Die()

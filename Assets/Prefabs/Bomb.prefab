@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2004728932960860907}
   - component: {fileID: 3683935608748959187}
   - component: {fileID: 2728062050249711447}
-  - component: {fileID: -1076325537298565091}
   - component: {fileID: 6741616345469992956}
+  - component: {fileID: 7781853272365141133}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -127,27 +127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletData: {fileID: 11400000, guid: 46efa88d306802546ba1705a11cebdc2, type: 2}
---- !u!65 &-1076325537298565091
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3055327978028073354}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 0.30500007, y: 0.28059998, z: 0.2900723}
-  m_Center: {x: -0.00000002980233, y: 0, z: 0.000000014901165}
 --- !u!135 &6741616345469992956
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -169,3 +148,15 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.15250003
   m_Center: {x: -0.00000002980233, y: 0, z: 0.000000014901165}
+--- !u!114 &7781853272365141133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055327978028073354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a24813552cfb14bad862db928ae457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

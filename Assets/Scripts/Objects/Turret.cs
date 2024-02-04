@@ -10,13 +10,14 @@ public class Turret : MonoBehaviour
 
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private TurretData _turretData;
+    [SerializeField] private PoolingObject _pooledObj;
+    
     private int enemyCount;
     private bool canShoot = false, isInArea = false;
     private float timeLeft=0, timeOfDelay; 
     
     private void Awake()
     {
-        timeLeft = _turretData._timeLeft;
         timeOfDelay = _turretData._timeOfDelay;
     }
 
@@ -60,7 +61,7 @@ public class Turret : MonoBehaviour
     {
         if (canShoot && isInArea)
         {
-            var bullet = Instantiate(_bulletPrefab, _shell.position, transform.rotation);
+            _pooledObj.Spawn(_shell.transform, transform.rotation, _bulletPrefab);
             timeLeft = timeOfDelay;
         }
     }

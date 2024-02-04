@@ -35,41 +35,31 @@ public class Bullet : MonoBehaviour
         }
     }
     
-    public void OnEnable()
-    {
-        StartCoroutine(Disable());
-    }
-
-    private IEnumerator Disable()
-    {
-        yield return new WaitForSeconds(3.5f);
-        gameObject.SetActive(false);
-    }
-
     private void MoveTowardsPlayer()
     {
         Vector3 direction = (target.position - transform.position).normalized;
         rb.AddForce(_bulletData.speedShooting*direction);
     }
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         var walkingEnemy = collision.gameObject.GetComponent<IWalkingEnemy>();
         var flyingEnemy = collision.gameObject.GetComponent<IFlyingEnemy>();
-        
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            this.enabled = false;
-        }
 
         if (walkingEnemy!= null)
         {
             walkingEnemy.GetHurt(_bulletData.hitForce);
+            
         }
 
         if (flyingEnemy!= null)
         {
             flyingEnemy.GetHurt(_bulletData.hitForce);
+        }
+
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            gameObject.SetActive(false);
         }
     }
 }

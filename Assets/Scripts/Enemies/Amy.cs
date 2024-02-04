@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Amy : MonoBehaviour, IFlyingEnemy
 {
     [SerializeField] private AmyFactory amyData;
+    [SerializeField] private PoolingObject _pooledObj;
     [SerializeField] private GameObject slider;
     private float _healthPoints;
     private float _nextAttack=-1;
@@ -31,7 +32,7 @@ public class Amy : MonoBehaviour, IFlyingEnemy
     {
         if (Time.time > _nextAttack)
         {
-            var bomb = Instantiate(amyData.bombPrefab);
+            _pooledObj.Spawn(transform, transform.rotation, amyData.bombPrefab);
             _nextAttack = _throwDelay + Time.time;
         }
     }
@@ -69,5 +70,10 @@ public class Amy : MonoBehaviour, IFlyingEnemy
     public Transform GetPosition()
     {
         return transform;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+       ThrowBomb(); 
     }
 }
